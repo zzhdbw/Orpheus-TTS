@@ -28,7 +28,7 @@ to make it very straightforward to create your own finetune.
 
 1. Clone This Repo
    ```bash
-   git clone
+   git clone https://github.com/canopyai/Orpheus-TTS-0.1.git
    ```
 2. Navigate and install packages
    ```bash
