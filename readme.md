@@ -28,7 +28,7 @@ to make it very straightforward to create your own finetune.
 
 1. For the pretrained model, you can either generate speech just conditioned on text, or generate speech conditioned on one or more existing text-speech pairs in the prompt. Since this model hasn't been explicitly trained on the zero-shot voice cloning objective the more text-speech pairs you pass in the prompt, the more reliably it will generate in the correct voice.
 
-2. For the finetuned models: For the primary model pass in <zac> or <zoe> at the end, after a space, to indicate the voice. For the model trained on tags pass in <emotion> or <artefact/>, check in emotions.txt for the various emotions and artefacts the model has seen.
+2. For the finetuned models: For the primary model pass in `<zac>` or `<zoe>` at the end, after a space, to indicate the voice. For the model trained on tags pass in `<emotion>` or `<artefact/>`, check in emotions.txt for the various emotions and artefacts the model has seen.
 
 
 
