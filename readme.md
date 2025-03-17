@@ -2,9 +2,13 @@
 ## Overview
 Orpheus TTS is an open-source text-to-speech system built on the Llama-3b backbone, Orpheus demonstrates the emergent capabilities of using LLMs for speech synthesis. We offer comparisons of the models below to leading closed models like Eleven Labs and PlayHT in our blog post. [See our blog post](https://canopylabs.ai/model-releases)
 
-[![Demo Video](https://img.youtube.com/vi/NvjnGNXEIp4/0.jpg)](https://youtu.be/NvjnGNXEIp4)
+Click the demo video of the kind of prompting and speech generation you get with Orpheus:
 
-
+<p align="center">
+  <a href="https://youtu.be/NvjnGNXEIp4">
+    <img src="https://img.youtube.com/vi/NvjnGNXEIp4/maxresdefault.jpg" alt="Demo Video" width="600">
+  </a>
+</p>
 
 ## Emergent Abilities
 
