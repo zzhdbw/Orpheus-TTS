@@ -35,7 +35,7 @@ to make it very straightforward to create your own finetune.
 
 #### Prompting
 
-1. For the `finetune-prod` models: For the primary model your text prompt is formatted as `{name}: I went to the ...`. The options for name in order of conversational realism (subjective benchmarks) are "tara", "jess", "leo", "dan", "mia", "zac", "zoe". Our python package does this formatting for you, and the notebook also prepends the appropriate string. You can additionally add the following outbursts: `<laugh>`, `<giggle>`, `<chuckle>`, `<sigh>`, `<cough>`, `<sniffle>`, `<groan>`, `<yawn>`, `<gasp>`.
+1. For the `finetune-prod` models: For the primary model your text prompt is formatted as `{name}: I went to the ...`. The options for name in order of conversational realism (subjective benchmarks) are "tara", "jess", "leo", "leah", "dan", "mia", "zac", "zoe". Our python package does this formatting for you, and the notebook also prepends the appropriate string. You can additionally add the following outbursts: `<laugh>`, `<giggle>`, `<chuckle>`, `<sigh>`, `<cough>`, `<sniffle>`, `<groan>`, `<yawn>`, `<gasp>`.
 
 2. For the pretrained model, you can either generate speech just conditioned on text, or generate speech conditioned on one or more existing text-speech pairs in the prompt. Since this model hasn't been explicitly trained on the zero-shot voice cloning objective the more text-speech pairs you pass in the prompt, the more reliably it will generate in the correct voice.
 
