@@ -13,12 +13,13 @@
   </form>
   <audio id="audioPlayer" controls autoplay></audio>
   <script>
-    const base_url  = "http://localhost:3000";
+    const base_url = `https://<enter-hostname-here>`;
+
     document.getElementById("promptForm").addEventListener("submit", function(event) {
       event.preventDefault();
       const prompt = document.getElementById("promptInput").value;
       const encodedPrompt = encodeURIComponent(prompt);
-      const audioUrl = `${base_url}/events?prompt=` + encodedPrompt;
+      const audioUrl = `${base_url}/tts?prompt=` + encodedPrompt;
       
       // Set the audio element's src to your endpoint to stream and play the audio data
       const audioPlayer = document.getElementById("audioPlayer");
