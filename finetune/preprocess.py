@@ -14,7 +14,7 @@ from transformers import AutoTokenizer
 from huggingface_hub import snapshot_download
 
 snapshot_download(
-    repo_id=dsn,
+    repo_id=dataset_my_notebook_pushed,
     repo_type="dataset",   
     revision="main",        
     max_workers=64,     
@@ -48,9 +48,33 @@ num_proc = os.cpu_count() - 2
 ds = ds.filter(lambda x: x["codes_list"] is not None)
 ds = ds.filter(lambda x: len(x["codes_list"]) > 0)
 
+def remove_duplicate_frames(example):
+    vals = example["codes_list"]
+    if len(vals) % 7 != 0:
+        raise ValueError("Input list length must be divisible by 7")
+    
+    result = vals[:7]
+    
+    removed_frames = 0
+    
+    for i in range(7, len(vals), 7):
+        current_first = vals[i]
+        previous_first = result[-7]
+        
+        if current_first != previous_first:
+            result.extend(vals[i:i+7])
+        else:
+            removed_frames += 1
+
+    example["codes_list"] = result
+    
+    return example
+
+ds = ds.map(remove_duplicate_frames, num_proc=60)
+
 
 def create_input_ids(example):
-    text_ids = tokenizer.encode(example["text"] + " " + f'<{example["source"]}>', add_special_tokens=True)
+    text_ids = tokenizer.encode(f'{example["source"]}: {example["text"]}',  add_special_tokens=True)
     text_ids.append(end_of_text)
     example["text_tokens"] = text_ids
     input_ids = (
