@@ -8,7 +8,7 @@ Orpheus TTS is an open-source text-to-speech system built on the Llama-3b backbo
 https://github.com/user-attachments/assets/ce17dd3a-f866-4e67-86e4-0025e6e87b8a
 
 
-## Emergent Abilities
+## Abilities
 
 - **Human-Like Speech**: Natural intonation, emotion, and rhythm that is superior to SOTA closed source models
 - **Zero-Shot Voice Cloning**: Clone voices without prior fine-tuning
@@ -21,29 +21,15 @@ We provide three models in this release, and additionally we offer the data proc
 
 1. [**Finetuned Prod**](https://huggingface.co/canopylabs/orpheus-tts-0.1-finetune-prod) – A finetuned model for everyday TTS applications
 
-1. [**Pretrained**](https://huggingface.co/canopylabs/orpheus-tts-0.1-pretrained) – Our base model trained on 100k+ hours of English speech data
-3. [**Finetuned Tags**](https://huggingface.co/canopylabs/orpheus-tts-0.1-emo-instruct) – Enhanced model with emotional expression capabilities - provided for research on speech controllability, not recommended for production
+2. [**Pretrained**](https://huggingface.co/canopylabs/orpheus-tts-0.1-pretrained) – Our base model trained on 100k+ hours of English speech data
+
 
 ### Inference
+#### Simple setup on colab
 1. [Colab For Tuned Model](https://colab.research.google.com/drive/1KhXT56UePPUHhqitJNUxq63k-pQomz3N?usp=sharing) (not streaming, see below for realtime streaming) – A finetuned model for everyday TTS applications.
 2. [Colab For Pretrained Model](https://colab.research.google.com/drive/10v9MIEbZOr_3V8ZcPAIh8MN7q2LjcstS?usp=sharing) – This notebook is set up for conditioned generation but can be extended to a range of tasks.
 
-
-
-#### Prompting
-
-1. The `finetune-prod` models: for the primary model, your text prompt is formatted as `{name}: I went to the ...`. The options for name in order of conversational realism (subjective benchmarks) are "tara", "jess", "leo", "leah", "dan", "mia", "zac", "zoe". Our python package does this formatting for you, and the notebook also prepends the appropriate string. You can additionally add the following emotive tags: `<laugh>`, `<giggle>`, `<chuckle>`, `<sigh>`, `<cough>`, `<sniffle>`, `<groan>`, `<yawn>`, `<gasp>`.
-
-2. The pretrained model: you can either generate speech just conditioned on text, or generate speech conditioned on one or more existing text-speech pairs in the prompt. Since this model hasn't been explicitly trained on the zero-shot voice cloning objective, the more text-speech pairs you pass in the prompt, the more reliably it will generate in the correct voice.
-
-3. The research model: the prompt that should get passed to the model has `prompt + " " + "<{emotion}>"` at the end. It should also not have the `{name}:` prefix as it is only trained on one voice. This model is not designed to be used in production. Rather, it's main goal is to show how LLMs can easily support tags to guide controllable emotional generations, and for now will perform worse on other metrics.
-
-
-Additionally, use regular LLM generation args like `temperature`, `top_p`, etc. as you expect for a regular LLM. `repetition_penalty>=1.1`is required for stable generations. Increasing `repetition_penalty` and `temperature` makes the model speak faster.
-
-
-
-#### Realtime Inference
+#### Streaming Inference
 
 1. Clone this repo
    ```bash
@@ -81,7 +67,18 @@ Additionally, use regular LLM generation args like `temperature`, `top_p`, etc. 
       print(f"It took {end_time - start_time} seconds to generate {duration:.2f} seconds of audio")
    ```
 
-4. Change the URL you connect to in vllm_inference/client.html
+
+#### Prompting
+
+1. The `finetune-prod` models: for the primary model, your text prompt is formatted as `{name}: I went to the ...`. The options for name in order of conversational realism (subjective benchmarks) are "tara", "jess", "leo", "leah", "dan", "mia", "zac", "zoe". Our python package does this formatting for you, and the notebook also prepends the appropriate string. You can additionally add the following emotive tags: `<laugh>`, `<giggle>`, `<chuckle>`, `<sigh>`, `<cough>`, `<sniffle>`, `<groan>`, `<yawn>`, `<gasp>`.
+
+2. The pretrained model: you can either generate speech just conditioned on text, or generate speech conditioned on one or more existing text-speech pairs in the prompt. Since this model hasn't been explicitly trained on the zero-shot voice cloning objective, the more text-speech pairs you pass in the prompt, the more reliably it will generate in the correct voice.
+
+3. The research model: the prompt that should get passed to the model has `prompt + " " + "<{emotion}>"` at the end. It should also not have the `{name}:` prefix as it is only trained on one voice. This model is not designed to be used in production. Rather, it's main goal is to show how LLMs can easily support tags to guide controllable emotional generations, and for now will perform worse on other metrics.
+
+
+Additionally, use regular LLM generation args like `temperature`, `top_p`, etc. as you expect for a regular LLM. `repetition_penalty>=1.1`is required for stable generations. Increasing `repetition_penalty` and `temperature` makes the model speak faster.
+
 
 ## Finetune Model
 
@@ -91,7 +88,7 @@ This is a very simple process analogous to tuning an LLM using Trainer and Trans
 You should start to see high quality results after ~50 examples but for best results, aim for 300 examples/speaker.
 
 1. Your dataset should be a huggingface dataset in [this format](https://huggingface.co/datasets/canopylabs/zac-sample-dataset)
-2. First, we tokenise your dataset using [this notebook](https://colab.research.google.com/drive/1wg_CPCA-MzsWtsujwy-1Ovhv-tn8Q1nD?usp=sharing). This pushes an intermediate dataset to your Hugging Face account which you will use for the second stage of processing. You will then enter the name of your dataset, the namespace of the intermediate dataset, and a HF write token in the notebook. This should take less than 1 minute/thousand rows.
+2. First, we tokenise the speech in your dataset using [this notebook](https://colab.research.google.com/drive/1wg_CPCA-MzsWtsujwy-1Ovhv-tn8Q1nD?usp=sharing). This pushes an intermediate dataset to your Hugging Face account which you will use for the second stage of processing. You will then enter the name of your dataset, the namespace of the intermediate dataset, and a HF write token in the notebook. This should take less than 1 minute/thousand rows.
 3. Clone this repo, and run edit the namespaces listed at the top of `finetune/preprocess.py` so it links to the dataset the notebook in step 2 pushed. This should take less than 1 minute/100k rows.
    ```bash
    cd finetune
