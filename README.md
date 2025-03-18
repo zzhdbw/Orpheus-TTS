@@ -88,15 +88,8 @@ This is a very simple process analogous to tuning an LLM using Trainer and Trans
 You should start to see high quality results after ~50 examples but for best results, aim for 300 examples/speaker.
 
 1. Your dataset should be a huggingface dataset in [this format](https://huggingface.co/datasets/canopylabs/zac-sample-dataset)
-2. First, we tokenise the speech in your dataset using [this notebook](https://colab.research.google.com/drive/1wg_CPCA-MzsWtsujwy-1Ovhv-tn8Q1nD?usp=sharing). This pushes an intermediate dataset to your Hugging Face account which you will use for the second stage of processing. You will then enter the name of your dataset, the namespace of the intermediate dataset, and a HF write token in the notebook. This should take less than 1 minute/thousand rows.
-3. Clone this repo, and run edit the namespaces listed at the top of `finetune/preprocess.py` so it links to the dataset the notebook in step 2 pushed. This should take less than 1 minute/100k rows.
-   ```bash
-   cd finetune
-   pip install datasets transformers
-   huggingface-cli login <enter your write token>
-   python preprocess.py
-   ```
-4. Modify the `finetune/config.yaml` file to include your dataset and training properties, and run the training script. You can additionally run any kind of huggingface compatible process like Lora to tune the model.
+2. We prepare the data using this [this notebook](https://colab.research.google.com/drive/1wg_CPCA-MzsWtsujwy-1Ovhv-tn8Q1nD?usp=sharing). This pushes an intermediate dataset to your Hugging Face account which you can can feed to the training script in finetune/train.py. Preprocessing should take less than 1 minute/thousand rows.
+3. Modify the `finetune/config.yaml` file to include your dataset and training properties, and run the training script. You can additionally run any kind of huggingface compatible process like Lora to tune the model.
    ```bash
     pip install transformers datasets wandb trl flash_attn torch
     huggingface-cli login <enter your HF token>
