@@ -1,34 +1,31 @@
 # Orpheus TTS
 ## Overview
-Orpheus TTS is an open-source text-to-speech system built on the Llama-3b backbone, Orpheus demonstrates the emergent capabilities of using LLMs for speech synthesis. We offer comparisons of the models below to leading closed models like Eleven Labs and PlayHT in our blog post. [See our blog post](https://canopylabs.ai/model-releases)
+Orpheus TTS is an open-source text-to-speech system built on the Llama-3b backbone. Orpheus demonstrates the emergent capabilities of using LLMs for speech synthesis. We offer comparisons of the models below to leading closed models like Eleven Labs and PlayHT in our blog post. [See our blog post](https://canopylabs.ai/model-releases)
 
-Click the demo video of the kind of prompting and speech generation you get with Orpheus:
+Check out the demo video of speech generation with Orpheus:
 
 <p align="center">
-  <a href="https://youtu.be/NvjnGNXEIp4">
-    <img src="https://img.youtube.com/vi/NvjnGNXEIp4/maxresdefault.jpg" alt="Demo Video" width="600">
-  </a>
+  <video src="https://youtu.be/NvjnGNXEIp4"></video>
 </p>
 
 ## Emergent Abilities
 
 - **Human-Like Speech**: Natural intonation, emotion, and rhythm that is superior to SOTA closed source models
 - **Zero-Shot Voice Cloning**: Clone voices without prior fine-tuning
-- **Guided Emotion and Intonation**: Control speech characteristics with simple tags
+- **Guided Emotion and Intonation**: Control speech and emotion characteristics with simple tags
 - **Low Latency**: ~200ms streaming latency for realtime applications, reducible to ~100ms with input streaming
 
 ## Models
 
-We provide three models in this release, for the two finetunes we offer data processing scripts and sample datasets
-to make it very straightforward to create your own finetune.
+We provide three models in this release, and additionally we offer the data processing scripts and sample datasets to make it very straightforward to create your own finetune.
 
-1. [**Finetuned Prod**](https://huggingface.co/canopylabs/orpheus-tts-0.1-finetune-prod) A finetuned model for everyday TTS applications.
+1. [**Finetuned Prod**](https://huggingface.co/canopylabs/orpheus-tts-0.1-finetune-prod) – A finetuned model for everyday TTS applications
 
-1. [**Pretrained**](https://huggingface.co/canopylabs/orpheus-tts-0.1-pretrained) Our base model trained on 100k+ hours of English speech data.
-3. [**Finetuned Tags**](https://huggingface.co/canopylabs/orpheus-tts-0.1-emo-instruct) Enhanced model with emotional expression capabilities - provided for research on speech controllability, not recommended for production.
+1. [**Pretrained**](https://huggingface.co/canopylabs/orpheus-tts-0.1-pretrained) – Our base model trained on 100k+ hours of English speech data
+3. [**Finetuned Tags**](https://huggingface.co/canopylabs/orpheus-tts-0.1-emo-instruct) – Enhanced model with emotional expression capabilities - provided for research on speech controllability, not recommended for production
 
 ### Inference
-1. [Colab For Tuned Model (not streaming, see below for realtime streaming)](https://colab.research.google.com/drive/1KhXT56UePPUHhqitJNUxq63k-pQomz3N?usp=sharing) A finetuned model for everyday TTS applications
+1. [Colab For Tuned Model (not streaming, see below for realtime streaming)](https://colab.research.google.com/drive/1KhXT56UePPUHhqitJNUxq63k-pQomz3N?usp=sharing) A finetuned model for everyday TTS applications.
 2. [Colab For Pretrained Model](https://colab.research.google.com/drive/10v9MIEbZOr_3V8ZcPAIh8MN7q2LjcstS?usp=sharing) This notebook is set up for conditioned generation but can be extended to a range of tasks.
 
 
@@ -84,7 +81,7 @@ Additionally, use regular LLM generation args like `temperature`, `top_p` etc as
       print(f"It took {end_time - start_time} seconds to generate {duration:.2f} seconds of audio")
    ```
 
-4. Change the Url you connect to in vllm_inference/client.html
+4. Change the URL you connect to in vllm_inference/client.html
 
 ## Finetune Model
 
