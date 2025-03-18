@@ -1,12 +1,8 @@
 # Orpheus TTS
 ## Overview
-Orpheus TTS is an open-source text-to-speech system built on the Llama-3b backbone. Orpheus demonstrates the emergent capabilities of using LLMs for speech synthesis. We offer comparisons of the models below to leading closed models like Eleven Labs and PlayHT in our blog post. [See our blog post](https://canopylabs.ai/model-releases)
+Orpheus TTS is an open-source text-to-speech system built on the Llama-3b backbone. Orpheus demonstrates the emergent capabilities of using LLMs for speech synthesis. We offer comparisons of the models below to leading closed models like Eleven Labs and PlayHT in our blog post.
 
-Check out the demo video of speech generation with Orpheus:
-
-<p align="center">
-  <video src="https://youtu.be/NvjnGNXEIp4"></video>
-</p>
+[Check out our blog post](https://canopylabs.ai/model-releases)
 
 ## Emergent Abilities
 
@@ -25,27 +21,27 @@ We provide three models in this release, and additionally we offer the data proc
 3. [**Finetuned Tags**](https://huggingface.co/canopylabs/orpheus-tts-0.1-emo-instruct) – Enhanced model with emotional expression capabilities - provided for research on speech controllability, not recommended for production
 
 ### Inference
-1. [Colab For Tuned Model (not streaming, see below for realtime streaming)](https://colab.research.google.com/drive/1KhXT56UePPUHhqitJNUxq63k-pQomz3N?usp=sharing) A finetuned model for everyday TTS applications.
-2. [Colab For Pretrained Model](https://colab.research.google.com/drive/10v9MIEbZOr_3V8ZcPAIh8MN7q2LjcstS?usp=sharing) This notebook is set up for conditioned generation but can be extended to a range of tasks.
+1. [Colab For Tuned Model](https://colab.research.google.com/drive/1KhXT56UePPUHhqitJNUxq63k-pQomz3N?usp=sharing) (not streaming, see below for realtime streaming) – A finetuned model for everyday TTS applications.
+2. [Colab For Pretrained Model](https://colab.research.google.com/drive/10v9MIEbZOr_3V8ZcPAIh8MN7q2LjcstS?usp=sharing) – This notebook is set up for conditioned generation but can be extended to a range of tasks.
 
 
 
 #### Prompting
 
-1. For the `finetune-prod` models: For the primary model your text prompt is formatted as `{name}: I went to the ...`. The options for name in order of conversational realism (subjective benchmarks) are "tara", "jess", "leo", "leah", "dan", "mia", "zac", "zoe". Our python package does this formatting for you, and the notebook also prepends the appropriate string. You can additionally add the following outbursts: `<laugh>`, `<giggle>`, `<chuckle>`, `<sigh>`, `<cough>`, `<sniffle>`, `<groan>`, `<yawn>`, `<gasp>`.
+1. The `finetune-prod` models: for the primary model, your text prompt is formatted as `{name}: I went to the ...`. The options for name in order of conversational realism (subjective benchmarks) are "tara", "jess", "leo", "leah", "dan", "mia", "zac", "zoe". Our python package does this formatting for you, and the notebook also prepends the appropriate string. You can additionally add the following emotive tags: `<laugh>`, `<giggle>`, `<chuckle>`, `<sigh>`, `<cough>`, `<sniffle>`, `<groan>`, `<yawn>`, `<gasp>`.
 
-2. For the pretrained model, you can either generate speech just conditioned on text, or generate speech conditioned on one or more existing text-speech pairs in the prompt. Since this model hasn't been explicitly trained on the zero-shot voice cloning objective the more text-speech pairs you pass in the prompt, the more reliably it will generate in the correct voice.
+2. The pretrained model: you can either generate speech just conditioned on text, or generate speech conditioned on one or more existing text-speech pairs in the prompt. Since this model hasn't been explicitly trained on the zero-shot voice cloning objective, the more text-speech pairs you pass in the prompt, the more reliably it will generate in the correct voice.
 
-3. For the research model the prompt that should get passed to the model has `prompt + " " + "<{emotion}>"` at the end. It should also not have the `{name}:` prefix as it is only trained on one voice. This model is not designed to be used in production, it's main goal is to show how LLMs can easily support tags to guide controllable emotional generations, and will perform worse on every other metric.
+3. The research model: the prompt that should get passed to the model has `prompt + " " + "<{emotion}>"` at the end. It should also not have the `{name}:` prefix as it is only trained on one voice. This model is not designed to be used in production. Rather, it's main goal is to show how LLMs can easily support tags to guide controllable emotional generations, and for now will perform worse on other metrics.
 
 
-Additionally, use regular LLM generation args like `temperature`, `top_p` etc as you expect for a regular LLM. `repetition_penalty>=1.1`is required for stable generations. Increasing `repetition_penalty` and `temperature` makes the model speak faster.
+Additionally, use regular LLM generation args like `temperature`, `top_p`, etc. as you expect for a regular LLM. `repetition_penalty>=1.1`is required for stable generations. Increasing `repetition_penalty` and `temperature` makes the model speak faster.
 
 
 
 #### Realtime Inference
 
-1. Clone This Repo
+1. Clone this repo
    ```bash
    pip install orpheus-speech # uses vllm under the hood for fast inference
    ```
@@ -88,21 +84,21 @@ Additionally, use regular LLM generation args like `temperature`, `top_p` etc as
 Here is an overview of how to finetune your model on any text and speech.
 This is a very simple process analogous to tuning an LLM using Trainer and Transformers.
 
-You should start to see high quality results after 50 examples. For best results, aim for 300 examples/speaker (that's how many each of our voices in the finetuned model is used)
+You should start to see high quality results after ~50 examples but for best results, aim for 300 examples/speaker.
 
 1. Your dataset should be a huggingface dataset in [this format](https://huggingface.co/datasets/canopylabs/zac-sample-dataset)
-2. First we tokenise your dataset using [this notebook](https://colab.research.google.com/drive/1wg_CPCA-MzsWtsujwy-1Ovhv-tn8Q1nD?usp=sharing). This pushes an intermediate dataset to your Hugging Face account which you will use for the second stage of processing. You will enter the name of your dataset, the namespace of the intermediate dataset, and a HF write token in the notebook. This should take less than 1 minute/thousand rows.
-3. Clone this repo, and run edit the namespaces listed at the top of finetune/preprocess.py so it links to the dataset the notebook in step 2 pushed. This should take less than 1 minute/100k rows.
+2. First, we tokenise your dataset using [this notebook](https://colab.research.google.com/drive/1wg_CPCA-MzsWtsujwy-1Ovhv-tn8Q1nD?usp=sharing). This pushes an intermediate dataset to your Hugging Face account which you will use for the second stage of processing. You will then enter the name of your dataset, the namespace of the intermediate dataset, and a HF write token in the notebook. This should take less than 1 minute/thousand rows.
+3. Clone this repo, and run edit the namespaces listed at the top of `finetune/preprocess.py` so it links to the dataset the notebook in step 2 pushed. This should take less than 1 minute/100k rows.
    ```bash
    cd finetune
    pip install datasets transformers
    huggingface-cli login <enter your write token>
    python preprocess.py
    ```
-4. Modify the finetune/config.yaml file to include your dataset and training properties, and run the training script. You can additionally run any kind of huggingface compatible process like Lora to tune the model.
+4. Modify the `finetune/config.yaml` file to include your dataset and training properties, and run the training script. You can additionally run any kind of huggingface compatible process like Lora to tune the model.
    ```bash
     pip install transformers datasets wandb trl flash_attn torch
-    huggingface-cli login <enter your write token>
+    huggingface-cli login <enter your HF token>
     wandb login <wandb token>
     accelerate launch train.py
    ```
