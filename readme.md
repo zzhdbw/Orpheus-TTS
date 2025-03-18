@@ -4,6 +4,10 @@ Orpheus TTS is an open-source text-to-speech system built on the Llama-3b backbo
 
 [Check out our blog post](https://canopylabs.ai/model-releases)
 
+
+https://github.com/user-attachments/assets/ce17dd3a-f866-4e67-86e4-0025e6e87b8a
+
+
 ## Emergent Abilities
 
 - **Human-Like Speech**: Natural intonation, emotion, and rhythm that is superior to SOTA closed source models
