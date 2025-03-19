@@ -29,22 +29,27 @@ We provide three models in this release, and additionally we offer the data proc
 1. [Colab For Tuned Model](https://colab.research.google.com/drive/1KhXT56UePPUHhqitJNUxq63k-pQomz3N?usp=sharing) (not streaming, see below for realtime streaming) – A finetuned model for everyday TTS applications.
 2. [Colab For Pretrained Model](https://colab.research.google.com/drive/10v9MIEbZOr_3V8ZcPAIh8MN7q2LjcstS?usp=sharing) – This notebook is set up for conditioned generation but can be extended to a range of tasks.
 
-#### Streaming Inference
+#### Streaming Inference Example
 
 1. Clone this repo
    ```bash
-   pip install orpheus-speech # uses vllm under the hood for fast inference
+   git clone https://github.com/canopyai/Orpheus-TTS.git
    ```
 2. Navigate and install packages
+   ```bash
+   cd Orpheus-TTS && pip install orpheus-speech # uses vllm under the hood for fast inference
+   ```
+3. Run the example below:
    ```python
    from orpheus_tts import OrpheusModel
    import wave
+   import time
+   
    model = OrpheusModel(model_name ="canopylabs/orpheus-tts-0.1-finetune-prod")
    prompt = '''Man, the way social media has, um, completely changed how we interact is just wild, right? Like, we're all connected 24/7 but somehow people feel more alone than ever. And don't even get me started on how it's messing with kids' self-esteem and mental health and whatnot.'''
 
-   import time
    start_time = time.monotonic()
-   syn_tokens = my_engine.generate_speech(
+   syn_tokens = model.generate_speech(
       prompt=prompt,
       voice="tara",
       )
