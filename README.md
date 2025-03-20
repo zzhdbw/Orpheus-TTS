@@ -106,9 +106,9 @@ You should start to see high quality results after ~50 examples but for best res
     wandb login <wandb token>
     accelerate launch train.py
    ```
-# Also Check out
-[A lightweight client for running Orpheus TTS locally using LM Studio API.] (https://github.com/isaiahbjork/orpheus-tts-local) 
-[Gradio WebUI that runs smoothly on WSL and CUDA](https://github.com/Saganaki22/OrpheusTTS-WebUI)
+## Also Check out
+1. [A lightweight client for running Orpheus TTS locally using LM Studio API.] (https://github.com/isaiahbjork/orpheus-tts-local) 
+2. [Gradio WebUI that runs smoothly on WSL and CUDA](https://github.com/Saganaki22/OrpheusTTS-WebUI)
 
 
 # Checklist
