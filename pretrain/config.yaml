@@ -9,7 +9,7 @@ number_processes: 8
 pad_token: 128263
 save_steps: 12000
 learning_rate: 5.0e-5
-ratio: 6
+ratio: <see read me to choose value>
 
 # Datasets
 text_QA_dataset: <speech input-ids>
