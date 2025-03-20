@@ -30,9 +30,6 @@ We provide three models in this release, and additionally we offer the data proc
 1. [Colab For Tuned Model](https://colab.research.google.com/drive/1KhXT56UePPUHhqitJNUxq63k-pQomz3N?usp=sharing) (not streaming, see below for realtime streaming) – A finetuned model for everyday TTS applications.
 2. [Colab For Pretrained Model](https://colab.research.google.com/drive/10v9MIEbZOr_3V8ZcPAIh8MN7q2LjcstS?usp=sharing) – This notebook is set up for conditioned generation but can be extended to a range of tasks.
 
-#### Alternative Inference
-Find different ways to run the model at the bottom of this ReadMe (i.e. on worse hardware, quantised etc). If you have a repo that supports non standard hardware/inference/weights more than happy to link at the bottom of this read me to make it easier to find for those interested!
-
 #### Streaming Inference Example
 
 1. Clone this repo
@@ -76,7 +73,9 @@ Find different ways to run the model at the bottom of this ReadMe (i.e. on worse
       end_time = time.monotonic()
       print(f"It took {end_time - start_time} seconds to generate {duration:.2f} seconds of audio")
    ```
-
+   
+#### Alternative Inference
+Find different ways to run the model at the bottom of this ReadMe (i.e. on worse hardware, quantised etc). If you have a repo that supports non standard hardware/inference/weights, please share in an issue, and I'll link at the bottom of this read me to make it easier to find for those interested!
 
 #### Prompting
 
