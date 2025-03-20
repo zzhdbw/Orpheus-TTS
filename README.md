@@ -25,9 +25,13 @@ We provide three models in this release, and additionally we offer the data proc
 
 
 ### Inference
+
 #### Simple setup on colab
 1. [Colab For Tuned Model](https://colab.research.google.com/drive/1KhXT56UePPUHhqitJNUxq63k-pQomz3N?usp=sharing) (not streaming, see below for realtime streaming) – A finetuned model for everyday TTS applications.
 2. [Colab For Pretrained Model](https://colab.research.google.com/drive/10v9MIEbZOr_3V8ZcPAIh8MN7q2LjcstS?usp=sharing) – This notebook is set up for conditioned generation but can be extended to a range of tasks.
+
+#### Alternative Inference
+Find different ways to run the model at the bottom of this ReadMe (i.e. on worse hardware, quantised etc). If you have a repo that supports non standard hardware/inference/weights more than happy to link at the bottom of this read me to make it easier to find for those interested!
 
 #### Streaming Inference Example
 
@@ -102,6 +106,10 @@ You should start to see high quality results after ~50 examples but for best res
     wandb login <wandb token>
     accelerate launch train.py
    ```
+# Also Check out
+[A lightweight client for running Orpheus TTS locally using LM Studio API.] (https://github.com/isaiahbjork/orpheus-tts-local) 
+[Gradio WebUI that runs smoothly on WSL and CUDA](https://github.com/Saganaki22/OrpheusTTS-WebUI)
+
 
 # Checklist
 
