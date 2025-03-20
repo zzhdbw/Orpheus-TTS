@@ -39,7 +39,8 @@ We provide three models in this release, and additionally we offer the data proc
    ```bash
    cd Orpheus-TTS && pip install orpheus-speech # uses vllm under the hood for fast inference
    ```
-3. Run the example below:
+   vllm pushed a slightly buggy version on March 18th so some bugs are being resolved by reverting to `pip install vllm==0.7.3` after `pip install orpheus-speech`
+4. Run the example below:
    ```python
    from orpheus_tts import OrpheusModel
    import wave
