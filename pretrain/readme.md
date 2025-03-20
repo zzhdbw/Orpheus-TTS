@@ -1,6 +1,6 @@
 # Pretraining
 ## Overview
-We find that trying to keep good semantic understand of text boosts the models ability when speaking naturally and empathetically. We propose training the model on batches of speech and text. If you want the model to retain a large part of its text ability - i.e. function as an end-to-end speech model you should keep the ratio of text batch :speech batch as 2:1 to start and then gradually decrease to 1:1 throughout training. If your model is just trained for TTS start with 1:1 and gradually decrease to 0:1.
+We find that trying to keep good semantic understanding of text boosts the models ability when speaking naturally and empathetically. We propose training the model on batches of speech and text. If you want the model to retain a large part of its text ability - i.e. function as an end-to-end speech model you should keep the ratio of text batch :speech batch as 2:1 to start and then gradually decrease to 1:1 throughout training. If your model is just trained for TTS start with 1:1 and gradually decrease to 0:1.
 
 
 ### Disclaimer
