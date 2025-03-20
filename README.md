@@ -7,7 +7,6 @@ Orpheus TTS is an open-source text-to-speech system built on the Llama-3b backbo
 
 https://github.com/user-attachments/assets/ce17dd3a-f866-4e67-86e4-0025e6e87b8a
 
-
 ## Abilities
 
 - **Human-Like Speech**: Natural intonation, emotion, and rhythm that is superior to SOTA closed source models
@@ -73,9 +72,6 @@ We provide three models in this release, and additionally we offer the data proc
       end_time = time.monotonic()
       print(f"It took {end_time - start_time} seconds to generate {duration:.2f} seconds of audio")
    ```
-   
-#### Alternative Inference
-Find different ways to run the model at the bottom of this ReadMe (i.e. on worse hardware, quantised etc). If you have a repo that supports non standard hardware/inference/weights, please share in an issue, and I'll link at the bottom of this read me to make it easier to find for those interested!
 
 #### Prompting
 
