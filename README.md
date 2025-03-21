@@ -101,6 +101,16 @@ You should start to see high quality results after ~50 examples but for best res
     wandb login <wandb token>
     accelerate launch train.py
    ```
+## Pretrain Model
+
+This is a very simple process analogous to training an LLM using Trainer and Transformers.
+
+The base model provided is trained over 100k hours. I recommend not using synthetic data for training as it produces worse results when you try to finetune specific voices, probably because synthetic voices lack diversity and map to the same set of tokens when tokenised (i.e. lead to poor codebook utilisation).
+
+We train the 3b model on sequences of length 8192 - we use the same dataset format for TTS finetuning for the <TTS-dataset> pretraining. We chain input_ids sequences together for more efficient training. The text dataset required is in the form described in this issue [#37 ](https://github.com/canopyai/Orpheus-TTS/issues/37). 
+
+If you are doing extended training this model, i.e. for another language or style we recommend starting with finetuning only (no text dataset). The main idea behind the text dataset is discussed in the blog post. (tldr; doesn't forget too much semantic/reasoning ability so its able to better understand how to intone/express phrases when spoken, however most of the forgetting would happen very early on in the training i.e. <100000 rows), so unless you are doing very extended finetuning it may not make too much of a difference.
+
 ## Also Check out
 
 While we can't verify these implementations are completely accurate/bug free, they have been recommended on a couple of forums, so we include them here:
