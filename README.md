@@ -118,8 +118,9 @@ If you are doing extended training this model, i.e. for another language or styl
 
 While we can't verify these implementations are completely accurate/bug free, they have been recommended on a couple of forums, so we include them here:
 
-1. [A lightweight client for running Orpheus TTS locally using LM Studio API](https://github.com/isaiahbjork/orpheus-tts-local) 
-2. [Gradio WebUI that runs smoothly on WSL and CUDA](https://github.com/Saganaki22/OrpheusTTS-WebUI)
+1. [A lightweight client for running Orpheus TTS locally using LM Studio API](https://github.com/isaiahbjork/orpheus-tts-local)
+2. [Open AI compatible Fast-API implementation](https://github.com/Lex-au/Orpheus-FastAPI)
+3. [Gradio WebUI that runs smoothly on WSL and CUDA](https://github.com/Saganaki22/OrpheusTTS-WebUI)
 
 
 # Checklist
