@@ -101,6 +101,9 @@ You should start to see high quality results after ~50 examples but for best res
     wandb login <wandb token>
     accelerate launch train.py
    ```
+### Additional Resources
+1. [PEFT finetuning with unsloth](https://github.com/unslothai/notebooks/pull/17/files)
+   
 ## Pretrain Model
 
 This is a very simple process analogous to training an LLM using Trainer and Transformers.
