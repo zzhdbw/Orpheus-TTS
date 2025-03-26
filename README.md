@@ -120,7 +120,8 @@ While we can't verify these implementations are completely accurate/bug free, th
 
 1. [A lightweight client for running Orpheus TTS locally using LM Studio API](https://github.com/isaiahbjork/orpheus-tts-local)
 2. [Open AI compatible Fast-API implementation](https://github.com/Lex-au/Orpheus-FastAPI)
-3. [Gradio WebUI that runs smoothly on WSL and CUDA](https://github.com/Saganaki22/OrpheusTTS-WebUI)
+3. [HuggingFace Space kindly set up by MohamedRashad](https://huggingface.co/spaces/MohamedRashad/Orpheus-TTS)
+4. [Gradio WebUI that runs smoothly on WSL and CUDA](https://github.com/Saganaki22/OrpheusTTS-WebUI)
 
 
 # Checklist
