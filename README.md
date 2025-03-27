@@ -72,6 +72,10 @@ We provide three models in this release, and additionally we offer the data proc
       end_time = time.monotonic()
       print(f"It took {end_time - start_time} seconds to generate {duration:.2f} seconds of audio")
    ```
+##### Additional Functionality
+
+1. Watermark your audio: Use Silent Cipher to watermark your audio generation; see [Watermark Audio Implementation](additional/watermark_audio) for implementation.
+
 
 #### Prompting
 
