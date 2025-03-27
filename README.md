@@ -74,48 +74,10 @@ We provide three models in this release, and additionally we offer the data proc
    ```
 ##### Additional Functionality
 
-1. Watermark your audio: Use Silent Cipher to watermark your audio generation; see [Watermark Audio Implementation](additional/watermark_audio) for implementation.
+1. Watermark your audio: Use Silent Cipher to watermark your audio generation; see [Watermark Audio Implementation](additional_inference_options/watermark_audio) for implementation.
 
+2. For No GPU inference using Llama cpp see implementation [documentation](additional_inference_options/no_gpu/README.md) for implementation example
 
-### Streaming Inference Example (No GPU)
-
-You can stream audio without a GPU by using `orpheus-cpp`, which is a llama.cpp-compatible backend of the Orpheus TTS model.
-
-1. Install orpheus-cpp
-   ```bash
-   pip install orpheus-cpp
-   ```
-2. Install llama-cpp-python
-   #### Linux/Windows
-   ```console
-   pip install llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
-   ```
-
-   #### MacOS with Apple Silicon
-   ```console
-   pip install llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/metal
-   ```
-3. Run the example below:
-   ```python
-   from scipy.io.wavfile import write
-   from orpheus_cpp import OrpheusCpp
-   import numpy as np
-
-   orpheus = OrpheusCpp(verbose=False)
-
-   text = "I really hope the project deadline doesn't get moved up again."
-   buffer = []
-   for i, (sr, chunk) in enumerate(orpheus.stream_tts_sync(text, options={"voice_id": "tara"})):
-      buffer.append(chunk)
-      print(f"Generated chunk {i}")
-   buffer = np.concatenate(buffer, axis=1)
-   write("output.wav", 24_000, np.concatenate(buffer))
-   ```
-4. WebRTC Streaming Example:
-   ```bash
-   python -m orpheus_cpp
-   ```
-   <video src="https://github.com/user-attachments/assets/54dfffc9-1981-4d12-b4d1-eb68ab27e5ad" controls style="text-align: center">></video>
 
 #### Prompting
 
