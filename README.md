@@ -31,8 +31,6 @@ We provide three models in this release, and additionally we offer the data proc
 
 #### Streaming Inference Example
 
-Python package listed in orpheus_speech_pypi
-
 1. Clone this repo
    ```bash
    git clone https://github.com/canopyai/Orpheus-TTS.git
