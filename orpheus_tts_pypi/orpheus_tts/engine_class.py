@@ -2,14 +2,15 @@ import asyncio
 import torch
 from vllm import AsyncLLMEngine, AsyncEngineArgs, SamplingParams
 from transformers import AutoTokenizer
-import threadingc
+import threading
 import queue
 from .decoder import tokens_decoder_sync
 
 class OrpheusModel:
-    def __init__(self, model_name, dtype=torch.bfloat16):
+    def __init__(self, model_name, dtype=torch.bfloat16, **engine_kwargs):
         self.model_name = self._map_model_params(model_name)
         self.dtype = dtype
+        self.engine_kwargs = engine_kwargs  # vLLM engine kwargs
         self.engine = self._setup_engine()
         self.available_voices = ["zoe", "zac","jess", "leo", "mia", "julia", "leah"]
         self.tokeniser = AutoTokenizer.from_pretrained(model_name)
@@ -42,7 +43,9 @@ class OrpheusModel:
         engine_args = AsyncEngineArgs(
             model=self.model_name,
             dtype=self.dtype,
+            **self.engine_kwargs
         )
+        
         return AsyncLLMEngine.from_engine_args(engine_args)
     
     def validate_voice(self, voice):
