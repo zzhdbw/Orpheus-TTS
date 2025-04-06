@@ -1,5 +1,6 @@
 import asyncio
 import torch
+import os
 from vllm import AsyncLLMEngine, AsyncEngineArgs, SamplingParams
 from transformers import AutoTokenizer
 import threading
@@ -7,14 +8,29 @@ import queue
 from .decoder import tokens_decoder_sync
 
 class OrpheusModel:
-    def __init__(self, model_name, dtype=torch.bfloat16, **engine_kwargs):
+    def __init__(self, model_name, dtype=torch.bfloat16, tokenizer='canopylabs/orpheus-3b-0.1-pretrained', **engine_kwargs):
         self.model_name = self._map_model_params(model_name)
         self.dtype = dtype
         self.engine_kwargs = engine_kwargs  # vLLM engine kwargs
         self.engine = self._setup_engine()
         self.available_voices = ["zoe", "zac","jess", "leo", "mia", "julia", "leah"]
-        self.tokeniser = AutoTokenizer.from_pretrained(model_name)
+        
+        # Use provided tokenizer path or default to model_name
+        tokenizer_path = tokenizer if tokenizer else model_name
+        self.tokenizer = self._load_tokenizer(tokenizer_path)
 
+    def _load_tokenizer(self, tokenizer_path):
+        """Load tokenizer from local path or HuggingFace hub"""
+        try:
+            # Check if tokenizer_path is a local directory
+            if os.path.isdir(tokenizer_path):
+                return AutoTokenizer.from_pretrained(tokenizer_path, local_files_only=True)
+            else:
+                return AutoTokenizer.from_pretrained(tokenizer_path)
+        except Exception as e:
+            print(f"Error loading tokenizer: {e}")
+            print(f"Falling back to default tokenizer")
+            return AutoTokenizer.from_pretrained("gpt2")
     
     def _map_model_params(self, model_name):
         model_map = {
@@ -62,18 +78,18 @@ class OrpheusModel:
         else:
             if voice:
                 adapted_prompt = f"{voice}: {prompt}"
-                prompt_tokens = self.tokeniser(adapted_prompt, return_tensors="pt")
+                prompt_tokens = self.tokenizer(adapted_prompt, return_tensors="pt")
                 start_token = torch.tensor([[ 128259]], dtype=torch.int64)
                 end_tokens = torch.tensor([[128009, 128260, 128261, 128257]], dtype=torch.int64)
                 all_input_ids = torch.cat([start_token, prompt_tokens.input_ids, end_tokens], dim=1)
-                prompt_string = self.tokeniser.decode(all_input_ids[0])
+                prompt_string = self.tokenizer.decode(all_input_ids[0])
                 return prompt_string
             else:
-                prompt_tokens = self.tokeniser(prompt, return_tensors="pt")
+                prompt_tokens = self.tokenizer(prompt, return_tensors="pt")
                 start_token = torch.tensor([[ 128259]], dtype=torch.int64)
                 end_tokens = torch.tensor([[128009, 128260, 128261, 128257]], dtype=torch.int64)
                 all_input_ids = torch.cat([start_token, prompt_tokens.input_ids, end_tokens], dim=1)
-                prompt_string = self.tokeniser.decode(all_input_ids[0])
+                prompt_string = self.tokenizer.decode(all_input_ids[0])
                 return prompt_string
 
  
