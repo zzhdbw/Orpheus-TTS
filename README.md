@@ -1,8 +1,12 @@
 # Orpheus TTS
-## Overview
-Orpheus TTS is an open-source text-to-speech system built on the Llama-3b backbone. Orpheus demonstrates the emergent capabilities of using LLMs for speech synthesis. We offer comparisons of the models below to leading closed models like Eleven Labs and PlayHT in our blog post.
 
-[Check out our blog post](https://canopylabs.ai/model-releases)
+#### Updates 🔥
+- [4/2025] We release a [family of multilingual models](https://huggingface.co/collections/canopylabs/orpheus-multilingual-research-release-67f5894cd16794db163786ba) in a research preview. We release a [training guide](https://canopylabs.ai/releases/orpheus_can_speak_any_language#training) that explains how we created these models in the hopes that even better versions in both the languages released and new languages are created. We welcome feedback and criticism as well as invite questions in this [discussion](https://github.com/canopyai/Orpheus-TTS/discussions/123) for feedback and questions.
+
+## Overview
+Orpheus TTS is a SOTA open-source text-to-speech system built on the Llama-3b backbone. Orpheus demonstrates the emergent capabilities of using LLMs for speech synthesis.
+
+[Check out our original blog post](https://canopylabs.ai/model-releases)
 
 
 https://github.com/user-attachments/assets/ce17dd3a-f866-4e67-86e4-0025e6e87b8a
@@ -16,16 +20,22 @@ https://github.com/user-attachments/assets/ce17dd3a-f866-4e67-86e4-0025e6e87b8a
 
 ## Models
 
-We provide three models in this release, and additionally we offer the data processing scripts and sample datasets to make it very straightforward to create your own finetune.
+We provide 2 models English models, and additionally we offer the data processing scripts and sample datasets to make it very straightforward to create your own finetune.
 
 1. [**Finetuned Prod**](https://huggingface.co/canopylabs/orpheus-tts-0.1-finetune-prod) – A finetuned model for everyday TTS applications
 
 2. [**Pretrained**](https://huggingface.co/canopylabs/orpheus-tts-0.1-pretrained) – Our base model trained on 100k+ hours of English speech data
 
+We also offer a family of multilingual models in a research release.
+
+1. [**Multlingual Family**](https://huggingface.co/collections/canopylabs/orpheus-multilingual-research-release-67f5894cd16794db163786ba) - 7 pairs of pretrained and finetuned models.
 
 ### Inference
 
 #### Simple setup on colab
+
+We offer a standardised prompt format across languages, and these notebooks illustrate how to use our models in English.
+
 1. [Colab For Tuned Model](https://colab.research.google.com/drive/1KhXT56UePPUHhqitJNUxq63k-pQomz3N?usp=sharing) (not streaming, see below for realtime streaming) – A finetuned model for everyday TTS applications.
 2. [Colab For Pretrained Model](https://colab.research.google.com/drive/10v9MIEbZOr_3V8ZcPAIh8MN7q2LjcstS?usp=sharing) – This notebook is set up for conditioned generation but can be extended to a range of tasks.
 
@@ -81,12 +91,10 @@ We provide three models in this release, and additionally we offer the data proc
 
 #### Prompting
 
-1. The `finetune-prod` models: for the primary model, your text prompt is formatted as `{name}: I went to the ...`. The options for name in order of conversational realism (subjective benchmarks) are "tara", "leah", "jess", "leo", "dan", "mia", "zac", "zoe". Our python package does this formatting for you, and the notebook also prepends the appropriate string. You can additionally add the following emotive tags: `<laugh>`, `<chuckle>`, `<sigh>`, `<cough>`, `<sniffle>`, `<groan>`, `<yawn>`, `<gasp>`.
+1. The `finetune-prod` models: for the primary model, your text prompt is formatted as `{name}: I went to the ...`. The options for name in order of conversational realism (subjective benchmarks) are "tara", "leah", "jess", "leo", "dan", "mia", "zac", "zoe". Our python package does this formatting for you, and the notebook also prepends the appropriate string. You can additionally add the following emotive tags: `<laugh>`, `<chuckle>`, `<sigh>`, `<cough>`, `<sniffle>`, `<groan>`, `<yawn>`, `<gasp>`. For multilingual, see this [post](https://huggingface.co/collections/canopylabs/orpheus-multilingual-research-release-67f5894cd16794db163786ba) for supported tags.
 
 2. The pretrained model: you can either generate speech just conditioned on text, or generate speech conditioned on one or more existing text-speech pairs in the prompt. Since this model hasn't been explicitly trained on the zero-shot voice cloning objective, the more text-speech pairs you pass in the prompt, the more reliably it will generate in the correct voice.
 
-<!-- 3. The research model: the prompt that should get passed to the model has `prompt + " " + "<{emotion}>"` at the end. It should also not have the `{name}:` prefix as it is only trained on one voice. This model is not designed to be used in production. Rather, it's main goal is to show how LLMs can easily support tags to guide controllable emotional generations, and for now will perform worse on other metrics.
- -->
 
 Additionally, use regular LLM generation args like `temperature`, `top_p`, etc. as you expect for a regular LLM. `repetition_penalty>=1.1`is required for stable generations. Increasing `repetition_penalty` and `temperature` makes the model speak faster.
 
