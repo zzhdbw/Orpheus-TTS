@@ -116,7 +116,7 @@ You should start to see high quality results after ~50 examples but for best res
     accelerate launch train.py
    ```
 ### Additional Resources
-1. [PEFT finetuning with unsloth](https://github.com/unslothai/notebooks/pull/17/files)
+1. [PEFT finetuning with unsloth](https://github.com/unslothai/notebooks/blob/main/nb/Orpheus_(3B)-TTS.ipynb)
    
 ## Pretrain Model
 
