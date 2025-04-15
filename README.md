@@ -20,7 +20,7 @@ https://github.com/user-attachments/assets/ce17dd3a-f866-4e67-86e4-0025e6e87b8a
 
 ## Models
 
-We provide 2 models English models, and additionally we offer the data processing scripts and sample datasets to make it very straightforward to create your own finetune.
+We provide 2 English models, and additionally we offer the data processing scripts and sample datasets to make it very straightforward to create your own finetune.
 
 1. [**Finetuned Prod**](https://huggingface.co/canopylabs/orpheus-tts-0.1-finetune-prod) – A finetuned model for everyday TTS applications
 
