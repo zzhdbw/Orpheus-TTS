@@ -23,7 +23,7 @@ You can stream audio without a GPU by using `orpheus-cpp`, which is a llama.cpp-
    from orpheus_cpp import OrpheusCpp
    import numpy as np
 
-   orpheus = OrpheusCpp(verbose=False)
+   orpheus = OrpheusCpp(verbose=False, lang="en")
 
    text = "I really hope the project deadline doesn't get moved up again."
    buffer = []
