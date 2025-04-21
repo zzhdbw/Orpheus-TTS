@@ -56,7 +56,7 @@ We offer a standardised prompt format across languages, and these notebooks illu
    import wave
    import time
    
-   model = OrpheusModel(model_name ="canopylabs/orpheus-tts-0.1-finetune-prod",,max_model_len=2048)
+   model = OrpheusModel(model_name ="canopylabs/orpheus-tts-0.1-finetune-prod",max_model_len=2048)
    prompt = '''Man, the way social media has, um, completely changed how we interact is just wild, right? Like, we're all connected 24/7 but somehow people feel more alone than ever. And don't even get me started on how it's messing with kids' self-esteem and mental health and whatnot.'''
 
    start_time = time.monotonic()
