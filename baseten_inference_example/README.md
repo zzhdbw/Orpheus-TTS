@@ -1,6 +1,6 @@
 # Orpheus TTS on Baseten
 
-[Baseten](https://www.baseten.co/) is Canopy Labs' preferred inference provider for running Orpheus TTS in production.
+[Baseten](https://www.baseten.co/) is Canopy Labs' [preferred inference provider](https://www.baseten.co/blog/canopy-labs-selects-baseten-as-preferred-inference-provider-for-orpheus-tts-model) for running Orpheus TTS in production.
 
 ## Deployment
 

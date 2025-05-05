@@ -34,9 +34,9 @@ We also offer a family of multilingual models in a research release.
 
 #### One-click deployment on Baseten
 
-Baseten is our [preferred inference partner](#todo) for Orpheus. Get a dedicated deployment with real-time streaming on production-grade infrastructure [in one click on Baseten](https://www.baseten.co/library/orpheus-tts/).
+Baseten is our [preferred inference partner](https://www.baseten.co/blog/canopy-labs-selects-baseten-as-preferred-inference-provider-for-orpheus-tts-model) for Orpheus. Get a dedicated deployment with real-time streaming on production-grade infrastructure [in one click on Baseten](https://www.baseten.co/library/orpheus-tts/).
 
-#### Simple setup on colab
+#### Simple setup on Colab
 
 We offer a standardised prompt format across languages, and these notebooks illustrate how to use our models in English.
 
