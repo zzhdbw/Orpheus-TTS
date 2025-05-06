@@ -1,6 +1,8 @@
 # Orpheus TTS
 
 #### Updates 🔥
+- [5/2025] We've partnered with [Baseten](https://www.baseten.co/blog/canopy-labs-selects-baseten-as-preferred-inference-provider-for-orpheus-tts-model) to bring highly optimized inference to Orpheus at fp8 (more performant) and fp16 (full fidelity) inference. See code and docs here (/additional_inference_options/baseten_inference_example/README.md).
+
 - [4/2025] We release a [family of multilingual models](https://huggingface.co/collections/canopylabs/orpheus-multilingual-research-release-67f5894cd16794db163786ba) in a research preview. We release a [training guide](https://canopylabs.ai/releases/orpheus_can_speak_any_language#training) that explains how we created these models in the hopes that even better versions in both the languages released and new languages are created. We welcome feedback and criticism as well as invite questions in this [discussion](https://github.com/canopyai/Orpheus-TTS/discussions/123) for feedback and questions.
 
 ## Overview
@@ -32,12 +34,13 @@ We also offer a family of multilingual models in a research release.
 
 ### Inference
 
-#### Simple setup on colab
+#### Simple setup on Colab
 
 We offer a standardised prompt format across languages, and these notebooks illustrate how to use our models in English.
 
 1. [Colab For Tuned Model](https://colab.research.google.com/drive/1KhXT56UePPUHhqitJNUxq63k-pQomz3N?usp=sharing) (not streaming, see below for realtime streaming) – A finetuned model for everyday TTS applications.
 2. [Colab For Pretrained Model](https://colab.research.google.com/drive/10v9MIEbZOr_3V8ZcPAIh8MN7q2LjcstS?usp=sharing) – This notebook is set up for conditioned generation but can be extended to a range of tasks.
+
 
 #### Streaming Inference Example
 
@@ -82,6 +85,12 @@ We offer a standardised prompt format across languages, and these notebooks illu
       end_time = time.monotonic()
       print(f"It took {end_time - start_time} seconds to generate {duration:.2f} seconds of audio")
    ```
+
+#### One-click deployment on Baseten
+
+Baseten is our [preferred inference partner](https://www.baseten.co/blog/canopy-labs-selects-baseten-as-preferred-inference-provider-for-orpheus-tts-model) for Orpheus. Get a dedicated deployment with real-time streaming on production-grade infrastructure [in one click on Baseten](https://www.baseten.co/library/orpheus-tts/).
+
+
 #### Additional Functionality
 
 1. Watermark your audio: Use Silent Cipher to watermark your audio generation; see [Watermark Audio Implementation](additional_inference_options/watermark_audio) for implementation.
