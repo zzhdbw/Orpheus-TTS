@@ -6,7 +6,11 @@
 
 To deploy the model, go to [https://www.baseten.co/library/orpheus-tts/](https://www.baseten.co/library/orpheus-tts/) and use the one-click deploy option.
 
+Baseten supports both fp8 (default for performance) and fp16 (full fidelity) versions of Orpheus.
+
 If you want to customize the model serving code, you can instead deploy the prepackaged model from Baseten's [example repository](https://github.com/basetenlabs/truss-examples/tree/main/orpheus-best-performance).
+
+
 
 ## Inference
 
