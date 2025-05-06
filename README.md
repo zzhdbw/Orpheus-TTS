@@ -41,6 +41,9 @@ We offer a standardised prompt format across languages, and these notebooks illu
 1. [Colab For Tuned Model](https://colab.research.google.com/drive/1KhXT56UePPUHhqitJNUxq63k-pQomz3N?usp=sharing) (not streaming, see below for realtime streaming) – A finetuned model for everyday TTS applications.
 2. [Colab For Pretrained Model](https://colab.research.google.com/drive/10v9MIEbZOr_3V8ZcPAIh8MN7q2LjcstS?usp=sharing) – This notebook is set up for conditioned generation but can be extended to a range of tasks.
 
+#### One-click deployment on Baseten
+
+Baseten is our [preferred inference partner](https://www.baseten.co/blog/canopy-labs-selects-baseten-as-preferred-inference-provider-for-orpheus-tts-model) for Orpheus. Get a dedicated deployment with real-time streaming on production-grade infrastructure [in one click on Baseten](https://www.baseten.co/library/orpheus-tts/).
 
 #### Streaming Inference Example
 
@@ -86,9 +89,6 @@ We offer a standardised prompt format across languages, and these notebooks illu
       print(f"It took {end_time - start_time} seconds to generate {duration:.2f} seconds of audio")
    ```
 
-#### One-click deployment on Baseten
-
-Baseten is our [preferred inference partner](https://www.baseten.co/blog/canopy-labs-selects-baseten-as-preferred-inference-provider-for-orpheus-tts-model) for Orpheus. Get a dedicated deployment with real-time streaming on production-grade infrastructure [in one click on Baseten](https://www.baseten.co/library/orpheus-tts/).
 
 
 #### Additional Functionality
