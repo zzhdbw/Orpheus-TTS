@@ -1,1 +1,8 @@
 .DS_Store
+data/*
+*/ckpt/*
+*/__pycache__/*
+pretrained_models/*
+log/*
+*/output/*
+*.log

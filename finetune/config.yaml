@@ -1,17 +1,18 @@
 # CHANGE THIS TO YOUR OWN DATASET
-TTS_dataset: <PATH_TO_YOUR_DATASET>
+TTS_dataset: ../data/processed/yuanshen/data-00000-of-00001_SFT.parquet
 
-model_name: "canopylabs/orpheus-tts-0.1-pretrained"
+model_name: "../pretrained_models/canopylabs/3b-zh-pretrain-research_release"
 
 # Training Args
 epochs: 1
-batch_size: 1
-number_processes: 1
+batch_size: 4
+number_processes: 8
 pad_token: 128263
 save_steps: 5000
 learning_rate: 5.0e-5
 
 # Naming and paths
-save_folder: "checkpoints"
+save_folder: "ckpt/Genshin5_4_CN"
 project_name: "tuning-orpheus"
 run_name: "5e5-0"
+

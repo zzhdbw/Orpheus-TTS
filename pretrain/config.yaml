@@ -1,21 +1,22 @@
 # Model
-model_name: "meta-llama/Llama-3.2-3B-Instruct"  # Replace with your base model must be compatible with the tokenizer and transformers library
-tokenizer_name: "meta-llama/Llama-3.2-3B-Instruct"
+model_name: "/home/zzh/code/TTS/Orpheus-TTS/pretrained_models/meta-llama/Llama-3.2-3B-Instruct"  # Replace with your base model must be compatible with the tokenizer and transformers library
+tokenizer_name: "/home/zzh/code/TTS/Orpheus-TTS/pretrained_models/meta-llama/Llama-3.2-3B-Instruct"
+
 
 # Training Args
 epochs: 1
-batch_size: 1
+batch_size: 8
 number_processes: 8
 pad_token: 128263
-save_steps: 12000
+save_steps: 1000
 learning_rate: 5.0e-5
-ratio: <see read me to choose value>
+ratio: 0.5
 
 # Datasets
-text_QA_dataset: <speech input-ids>
-TTS_dataset: <text-input-ids>
+text_QA_dataset: /home/zzh/code/TTS/Orpheus-TTS/data/processed/text/data-00000-of-00001_pretrain.parquet
+TTS_dataset: /home/zzh/code/TTS/Orpheus-TTS/data/processed/yuanshen/data-00000-of-00001_pretrain.parquet
 
 # Naming and paths
-save_folder: "checkpoints"
+save_folder: "ckpt"
 project_name: "pretrain-orpheus"
 run_name: "pretrain-orpheus"
